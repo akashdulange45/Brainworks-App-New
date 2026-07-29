@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Manage Videos</title>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background: #f4f6f9;
+}
+
+/* Sidebar */
+.sidebar {
+	width: 220px;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #2c3e50;
+}
+
+.sidebar h2 {
+	color: white;
+	text-align: center;
+	padding: 20px;
+}
+
+.sidebar a {
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding: 15px 20px;
+}
+
+.sidebar a:hover {
+	background: #34495e;
+}
+
+/* Main */
+.main {
+	margin-left: 220px;
+	padding: 30px;
+}
+
+.header {
+	background: #3498db;
+	color: white;
+	padding: 25px;
+	border-radius: 10px;
+	margin-bottom: 25px;
+}
+
+.header h1 {
+	margin-bottom: 8px;
+}
+
+/* Table */
+.table-box {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th {
+	background: #3498db;
+	color: white;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 12px;
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background: #f9f9f9;
+}
+
+/* Buttons */
+
+/* Buttons Container */
+.action-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+/* Common Button Style */
+.play-btn, .edit-btn, .delete-btn {
+	display: inline-block;
+	min-width: 75px;
+	text-align: center;
+	padding: 8px 14px;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	transition: .3s;
+}
+
+/* Play */
+.play-btn {
+	background: #3498db;
+}
+
+.play-btn:hover {
+	background: #2980b9;
+}
+
+
+
+.edit-btn:hover {
+	background: #d68910;
+}
+
+/* Delete */
+.delete-btn {
+	background: #e74c3c;
+}
+
+.delete-btn:hover {
+	background: #c0392b;
+}
+
+.upload-btn {
+	display: inline-block;
+	background: #27ae60;
+	color: white;
+	text-decoration: none;
+	padding: 12px 20px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+.upload-btn:hover {
+	background: #219150;
+}
+</style>
+
+</head>
+<body>
+
+		<div class="sidebar">
+
+		<h2>BrainWorks</h2>
+
+		<a th:href="@{/admin/dashboard}">🏠 Home</a> <a
+			th:href="@{/admin/students}">👨‍🎓 Students</a> <a
+			th:href="@{/admin/courses}">🏷️ courses</a> <a
+			th:href="@{/admin/videos}"> 📹 Manage Videos </a> <a
+			th:href="@{/admin/payments}">💳 Payments</a>
+			 <a th:href="@{/login}">Logout </a>
+
+	</div>
+
+	<div class="main">
+
+		<div class="header">
+
+			<h1>Manage Uploaded Videos</h1>
+
+			<p>View, Edit and Delete Uploaded Course Videos</p>
+
+		</div>
+
+		<a class="upload-btn" th:href="@{/admin/upload-video}"> + Upload
+			New Video </a>
+
+		<div class="table-box">
+
+			<table>
+
+				<tr>
+
+					<th>ID</th>
+
+					<th>Course ID</th>
+
+					<th>Video Title</th>
+
+					<th>Description</th>
+
+					<th>Uploaded On</th>
+
+					<th>Actions</th>
+
+				</tr>
+
+				<tr th:each="video : ${videos}">
+
+					<td th:text="${video.id}"></td>
+
+					<td th:text="${video.courseId}"></td>
+
+					<td th:text="${video.title}"></td>
+
+					<td th:text="${video.description}"></td>
+
+					<td th:text="${video.uploadDate}"></td>
+
+					<td>
+
+						<div class="action-buttons">
+
+							<a class="play-btn"
+								th:href="@{/videos/{fileName}(fileName=${video.videoPath})}"
+								target="_blank"> ▶ Play </a> <a
+								class="delete-btn"
+								onclick="return confirm('Delete this video?')"
+								th:href="@{/admin/delete-video/{id}(id=${video.id})}">
+								Delete </a>
+
+						</div>
+				</tr>
+
+			</table>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

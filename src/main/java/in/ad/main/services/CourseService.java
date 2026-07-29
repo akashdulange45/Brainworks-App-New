@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ad.main.entity.Course;
+import in.ad.main.exception.ResourceNotFoundException;
 import in.ad.main.repository.CourseRepository;
 
 @Service
@@ -20,7 +21,7 @@ public class CourseService {
 
 	public Course getCourseById(Long id) {
 
-		return repository.findById(id).orElseThrow(() -> new RuntimeException("Course Not Found"));
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Course Not Found"));
 	}
 
 	public List<Course> searchCourse(String title) {

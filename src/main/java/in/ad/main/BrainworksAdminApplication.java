@@ -8,6 +8,9 @@ public class BrainworksAdminApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BrainworksAdminApplication.class, args);
+
+	    }
+	
 	}
 
-}
+

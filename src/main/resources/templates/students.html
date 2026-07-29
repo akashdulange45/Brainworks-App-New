@@ -5,231 +5,214 @@
 <title>Students Management</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-body{
-    font-family:Arial, sans-serif;
+body {
+	font-family: Arial, sans-serif;
 }
 
 /* Sidebar */
-.sidebar{
-    width:220px;
-    height:100vh;
-    background:#2c3e50;
-    position:fixed;
-    left:0;
-    top:0;
+.sidebar {
+	width: 220px;
+	height: 100vh;
+	background: #2c3e50;
+	position: fixed;
+	left: 0;
+	top: 0;
 }
 
-.sidebar h2{
-    color:white;
-    text-align:center;
-    padding:20px 0;
-    border-bottom:1px solid #444;
+.sidebar h2 {
+	color: white;
+	text-align: center;
+	padding: 20px 0;
+	border-bottom: 1px solid #444;
 }
 
-.sidebar a{
-    display:block;
-    color:white;
-    text-decoration:none;
-    padding:15px 20px;
+.sidebar a {
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding: 15px 20px;
 }
 
-.sidebar a:hover{
-    background:#34495e;
+.sidebar a:hover {
+	background: #34495e;
 }
 
 /* Main Content */
-.main-content{
-    margin-left:220px;
-    padding:20px;
+.main-content {
+	margin-left: 220px;
+	padding: 20px;
 }
 
-.header{
-    background:#3498db;
-    color:white;
-    padding:15px;
-    border-radius:5px;
-    margin-bottom:20px;
+.header {
+	background: #3498db;
+	color: white;
+	padding: 15px;
+	border-radius: 5px;
+	margin-bottom: 20px;
 }
 
-.search-container{
-    display:flex;
-    gap:20px;
-    margin-bottom:20px;
+.search-container {
+	display: flex;
+	gap: 20px;
+	margin-bottom: 20px;
 }
 
-.search-box{
-    background:#f4f4f4;
-    padding:15px;
-    border-radius:8px;
-    box-shadow:0 2px 5px rgba(0,0,0,0.2);
+.search-box {
+	background: #f4f4f4;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.search-box input{
-    padding:8px;
-    margin-top:5px;
+.search-box input {
+	padding: 8px;
+	margin-top: 5px;
 }
 
-.search-box button{
-    padding:8px 12px;
-    background:#3498db;
-    color:white;
-    border:none;
-    cursor:pointer;
-    border-radius:4px;
+.search-box button {
+	padding: 8px 12px;
+	background: #3498db;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
-.search-box button:hover{
-    background:#2980b9;
+.search-box button:hover {
+	background: #2980b9;
 }
 
 /* Table */
-.table-container{
-    background:white;
-    padding:20px;
-    border-radius:8px;
-    box-shadow:0 2px 5px rgba(0,0,0,0.2);
+.table-container {
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
+table {
+	width: 100%;
+	border-collapse: collapse;
 }
 
-table th{
-    background:#3498db;
-    color:white;
+table th {
+	background: #3498db;
+	color: white;
 }
 
-table, th, td{
-    border:1px solid #ddd;
+table, th, td {
+	border: 1px solid #ddd;
 }
 
-th, td{
-    padding:12px;
-    text-align:center;
+th, td {
+	padding: 12px;
+	text-align: center;
 }
 
-tr:nth-child(even){
-    background:#f9f9f9;
+tr:nth-child(even) {
+	background: #f9f9f9;
 }
 
-.action-btn{
-    text-decoration:none;
-    padding:6px 10px;
-    border-radius:4px;
-    color:white;
+.action-btn {
+	text-decoration: none;
+	padding: 6px 10px;
+	border-radius: 4px;
+	color: white;
 }
 
-.update{
-    background:#27ae60;
+.delete {
+	background: #e74c3c;
 }
 
-.delete{
-    background:#e74c3c;
-}
-
-.back-btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:10px 15px;
-    background:#2c3e50;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
+.back-btn {
+	display: inline-block;
+	margin-top: 20px;
+	padding: 10px 15px;
+	background: #2c3e50;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
 }
 </style>
 
 </head>
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
+	<!-- Sidebar -->
+	<div class="sidebar">
 
-    <h2>BrainWorks</h2>
+		<h2>BrainWorks</h2>
 
-    <a th:href="@{/admin/dashboard}">🏠 Home</a>
-    <a th:href="@{/admin/courses}">🏷️ Courses</a>
-    <a th:href="@{/admin/students}">👨‍🎓 Students</a>
-    <a th:href="@{/admin/payments}">💳 Payments</a>
+		<a th:href="@{/admin/dashboard}">🏠 Home</a> <a
+			th:href="@{/admin/students}">👨‍🎓 Students</a> <a
+			th:href="@{/admin/courses}">🏷️ courses</a> <a
+			th:href="@{/admin/videos}"> 📹 Manage Videos </a> <a
+			th:href="@{/admin/payments}">💳 Payments</a>
+			 <a th:href="@{/login}">Logout </a>
 
-</div>
+	</div>
 
-<!-- Main Content -->
-<div class="main-content">
+	<!-- Main Content -->
+	<div class="main-content">
 
-    <div class="header">
-        <h1>Students Management</h1>
-        <p>Manage all registered students</p>
-    </div>
+		<div class="header">
+			<h1>Students Management</h1>
+			<p>Manage all registered students</p>
+		</div>
 
-    <!-- Search Section -->
-    <div class="search-container">
+		<!-- Search Section -->
+		<div class="search-container">
 
-        <div class="search-box">
-            <form th:action="@{/admin/student/search/id}" method="get">
-                <label>Search By ID</label><br><br>
-                <input type="number" name="id" placeholder="Enter Student ID">
-                <button type="submit">Search</button>
-            </form>
-        </div>
 
-        <div class="search-box">
-            <form th:action="@{/admin/student/search/email}" method="get">
-                <label>Search By Email</label><br><br>
-                <input type="email" name="email" placeholder="Enter Email">
-                <button type="submit">Search</button>
-            </form>
-        </div>
+			<div class="search-box">
+				<form th:action="@{/admin/student/search/email}" method="get">
+					<label>Search By Email</label><br>
+					<br> <input type="email" name="email"
+						placeholder="Enter Email">
+					<button type="submit">Search</button>
+				</form>
+			</div>
 
-    </div>
+		</div>
 
-    <!-- Students Table -->
-    <div class="table-container">
+		<!-- Students Table -->
+		<div class="table-container">
 
-        <table>
+			<table>
 
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Action</th>
-            </tr>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Mobile</th>
+					<th>Action</th>
+				</tr>
 
-            <tr th:each="student : ${students}">
-                <td th:text="${student.id}"></td>
-                <td th:text="${student.name}"></td>
-                <td th:text="${student.email}"></td>
-                <td th:text="${student.mobile}"></td>
+				<tr th:each="student : ${students}">
+					<td th:text="${student.id}"></td>
+					<td th:text="${student.name}"></td>
+					<td th:text="${student.email}"></td>
+					<td th:text="${student.mobile}"></td>
 
-                <td>
-                    <a class="action-btn update"
-                       th:href="@{/admin/student/edit/{id}(id=${student.id})}">
-                        Update
-                    </a>
+					<td><a class="action-btn delete"
+						th:href="@{/admin/student/delete/{id}(id=${student.id})}">
+							Delete </a></td>
+				</tr>
 
-                    <a class="action-btn delete"
-                       th:href="@{/admin/student/delete/{id}(id=${student.id})}">
-                        Delete
-                    </a>
-                </td>
-            </tr>
+			</table>
 
-        </table>
+		</div>
 
-    </div>
+		<a class="back-btn" th:href="@{/admin/dashboard}"> ← Back To
+			Dashboard </a>
 
-    <a class="back-btn" th:href="@{/admin/dashboard}">
-        ← Back To Dashboard
-    </a>
-
-</div>
+	</div>
 
 </body>
 </html>

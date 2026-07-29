@@ -2,14 +2,19 @@ package in.ad.main.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ad.main.entity.Payment;
+import in.ad.main.exception.ResourceNotFoundException;
 import in.ad.main.repository.PaymentRepository;
 
 @Service
 public class PaymentService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PaymentService.class);
     @Autowired
     private PaymentRepository repository;
 
@@ -28,22 +33,40 @@ public class PaymentService {
     public Payment getPaymentById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Payment Not Found"));
+                        new ResourceNotFoundException("Payment Not Found"));
     }
 
     public void approvePayment(Long id) {
 
-        Payment payment = getPaymentById(id);
-
-        payment.setStatus("APPROVED");
-
-        repository.save(payment);
+//        Payment payment = getPaymentById(id);
+//
+//        payment.setStatus("APPROVED");
+//
+//        repository.save(payment);
+    	
+    	Payment payment = getPaymentById(id);
+    	
+    	logger.info("Payment Approved : Id={}, Student={}, Course={}",
+    	        payment.getId(),
+    	        payment.getStudentName(),
+    	        payment.getCourseName());
+    	
+    	
+    	
+    	payment.setStatus("APPROVED");
+    	
+    	repository.save(payment);
+    
     }
 
     public void rejectPayment(Long id) {
 
         Payment payment = getPaymentById(id);
 
+        logger.warn("Payment Rejected : Id={}, Student={}",
+                payment.getId(),
+                payment.getStudentName());
+        
         payment.setStatus("REJECTED");
 
         repository.save(payment);

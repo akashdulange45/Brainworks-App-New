@@ -1,5 +1,8 @@
 package in.ad.main.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import in.ad.main.entity.Student;
+import in.ad.main.repository.StudentRepository;
 import in.ad.main.services.StudentService;
 
 @Controller
@@ -16,6 +20,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping("/students")
     public String getAllStudents(Model model) {
@@ -26,26 +32,18 @@ public class StudentController {
         return "students";
     }
 
-    @GetMapping("/student/search/id")
-    public String searchById(
-            @RequestParam Long id,
-            Model model) {
-
-        model.addAttribute("student",
-                studentService.getStudentById(id));
-
-        return "student-details";
-    }
+ 
 
     @GetMapping("/student/search/email")
-    public String searchByEmail(
-            @RequestParam String email,
-            Model model) {
+    public String searchByEmail(@RequestParam("email") String email, Model model) {
 
-        model.addAttribute("student",
-                studentService.getStudentByEmail(email));
+        List<Student> students = new ArrayList<>();
 
-        return "student-details";
+        studentRepository.findByEmail(email).ifPresent(students::add);
+
+        model.addAttribute("students", students);
+
+        return "students";
     }
 
     @GetMapping("/student/delete/{id}")

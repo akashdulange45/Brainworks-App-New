@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Upload Course Video</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial;
+    background:#f4f6f9;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:#2c3e50;
+}
+
+.sidebar h2{
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px 20px;
+}
+
+.sidebar a:hover{
+    background:#34495e;
+}
+
+/* Main */
+
+.main{
+    margin-left:220px;
+    padding:30px;
+}
+
+.card{
+
+    width:700px;
+    background:white;
+    margin:auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+
+}
+
+.card h2{
+    color:#3498db;
+    margin-bottom:20px;
+}
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+
+}
+
+textarea{
+
+    resize:none;
+    height:120px;
+
+}
+
+button{
+
+    background:#27ae60;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#219150;
+
+}
+
+</style>
+
+</head>
+<body>
+
+	<div class="sidebar">
+
+		<h2>BrainWorks</h2>
+
+		<a th:href="@{/admin/dashboard}">🏠 Home</a> <a
+			th:href="@{/admin/students}">👨‍🎓 Students</a> <a
+			th:href="@{/admin/courses}">🏷️ courses</a> <a
+			th:href="@{/admin/videos}"> 📹 Manage Videos </a> <a
+			th:href="@{/admin/payments}">💳 Payments</a>
+			 <a th:href="@{/login}">Logout </a>
+
+	</div>
+
+<div class="main">
+
+<div class="card">
+
+<h2>Upload Course Video</h2>
+
+<form
+th:action="@{/admin/save-video}"
+method="post"
+enctype="multipart/form-data"
+th:object="${video}">
+
+<div class="form-group">
+
+<label>Select Course</label>
+
+<select th:field="*{courseId}" required>
+
+<option value="">Select Course</option>
+
+<option
+th:each="course:${courses}"
+th:value="${course.id}"
+th:text="${course.title}">
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Video Title</label>
+
+<input
+type="text"
+th:field="*{title}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea
+th:field="*{description}">
+</textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Select Video</label>
+
+<input
+type="file"
+name="videoFile"
+accept="video/*"
+required>
+
+</div>
+
+<button type="submit">
+
+Upload Video
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

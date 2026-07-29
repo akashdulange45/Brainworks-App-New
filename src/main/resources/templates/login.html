@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Brainworks Admin Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+
+}
+
+.login-box{
+
+    width:420px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.logo{
+
+    text-align:center;
+    margin-bottom:20px;
+
+}
+
+.logo i{
+
+    font-size:65px;
+    color:#1e88e5;
+
+}
+
+.logo h2{
+
+    margin-top:10px;
+    color:#333;
+
+}
+
+.logo p{
+
+    color:gray;
+    font-size:14px;
+
+}
+
+.input-box{
+
+    margin-top:25px;
+    position:relative;
+
+}
+
+.input-box i{
+
+    position:absolute;
+
+    left:15px;
+    top:15px;
+
+    color:#777;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px 14px 14px 45px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.input-box input:focus{
+
+    border-color:#1e88e5;
+
+    box-shadow:0 0 8px rgba(30,136,229,.4);
+
+}
+
+button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#1e88e5;
+
+    color:#fff;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#1565c0;
+
+}
+
+.footer{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:gray;
+
+    font-size:13px;
+
+}
+
+.error{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:red;
+
+}
+
+.logout{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:green;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-user-shield"></i>
+
+        <h2>Brainworks Admin</h2>
+
+        <p>Login to Admin Dashboard</p>
+
+    </div>
+
+    <form th:action="@{/login}" method="post">
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-user"></i>
+
+            <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter Username"
+                    required>
+
+        </div>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required>
+
+        </div>
+
+        <button type="submit">
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            Login
+
+        </button>
+
+    </form>
+
+    <div class="error"
+         th:if="${param.error}">
+
+        Invalid Username or Password
+
+    </div>
+
+    <div class="logout"
+         th:if="${param.logout}">
+
+        Logged out successfully
+
+    </div>
+
+    <div class="footer">
+
+        © 2026 Brainworks Admin Panel
+
+    </div>
+
+</div>
+
+</body>
+</html>
