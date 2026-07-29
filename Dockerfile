@@ -1,4 +1,3 @@
-# Stage 1: Build the application
 FROM maven:3.9.8-eclipse-temurin-17 AS builder
 
 WORKDIR /app
@@ -8,7 +7,6 @@ COPY src ./src
 
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the application
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app
