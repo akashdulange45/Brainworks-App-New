@@ -11,7 +11,7 @@ import in.ad.main.repository.StudentRepository;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/")
 public class AdminController {
 	
 	 @Autowired
